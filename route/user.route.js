@@ -34,4 +34,14 @@ route.post("/login", async (req, res) => {
   }
 });
 
+route.get("/", auth, async (req, res) => {
+    try {
+      let users = await UserModel.find();
+      if(users.length == 0) return res.status(400).send({message : "No Users Found"})
+      res.status(200).send({data : users})
+    } catch (error) {
+      res.status(400).send({message : error.message})
+    }
+})
+
 module.exports = route;
