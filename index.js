@@ -12,6 +12,10 @@ app.use(cors());
 app.use(`/users`,  userRoute );
 app.use(`/notes` , noteRoute);
 
+app.get("/", (req, res) => {
+    res.send("Hello World");
+})
+
 app.listen(`${process.env.PORT}` || 5000, async() => {
     try {
         console.log("server is running");
